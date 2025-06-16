@@ -1,9 +1,9 @@
 import { WebUntis } from "webuntis";
 
-const school = process.env.school;
-const username = process.env.user;
-const pwd = process.env.pwd;
-const host = process.env.host;
+const school = Deno.env.get("school");
+const username = Deno.env.get("user");
+const pwd = Deno.env.get("pwd");
+const host = Deno.env.get("host");
 if (!school || !username || !pwd || !host) {
     throw new Error(
         "Please set the environment variables: school, user, pwd, host",
@@ -17,6 +17,7 @@ const untis = new WebUntis(
 );
 
 await untis.login();
+
 const timetable = await untis.getCurrentSchoolyear();
 console.log(timetable);
 // profit
